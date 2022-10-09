@@ -1,7 +1,9 @@
 package com.usa.ciclo3.reto3.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,5 +30,7 @@ public class Category implements Serializable  {
     private String name;
     @Column(name = "DESCRIPTION", length = 250)
     private String description;
-    
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "category")
+    @JsonIgnoreProperties("category")
+    private List<Cabin> cabins;
 }

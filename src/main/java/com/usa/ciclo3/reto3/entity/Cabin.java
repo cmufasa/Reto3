@@ -1,12 +1,15 @@
 package com.usa.ciclo3.reto3.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,19 +24,23 @@ public class Cabin implements Serializable  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
     private Long id;
-    @Column(name = "BRAND", nullable = false, length = 45)
-    private String brand;
     @Column(name = "NAME", nullable = false, length = 45)
     private String name;
+    @Column(name = "BRAND", nullable = false, length = 45)
+    private String brand;
     @Column(name = "ROOMS", nullable = false)
     private Integer rooms;
-    @ManyToOne
-    private Category category;
     @Column(name = "DESCRIPTION", length = 250)
     private String description;
-    @OneToMany
-    private Set<Message> messages;
-    @OneToMany
-    private Set<Reservation> reservations;
+    @ManyToOne
+    @JoinColumn(name = "categoryId")
+    @JsonIgnoreProperties("cabins")
+    private Category category;
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "cabin")
+    @JsonIgnoreProperties("cabin")
+    private List<Message> messages;
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "cabin")
+    @JsonIgnoreProperties("cabin")
+    private List<Reservation> reservations;
     
 }

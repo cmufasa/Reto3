@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -22,7 +23,7 @@ public class Score implements Serializable  {
     private Integer valueScore;
     @Column(name = "MSGTEXT", nullable = false, length = 250)
     private String msgText;
-    @Column(name = "ID_BOOKING", nullable = false)
-    private String idBooking;
+    @OneToOne(mappedBy = "score")
+    private Reservation reservation;
         
 }
