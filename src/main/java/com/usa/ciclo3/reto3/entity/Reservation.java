@@ -16,10 +16,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "RESERVATION")
 public class Reservation implements Serializable {
     
@@ -35,15 +39,18 @@ public class Reservation implements Serializable {
     @JsonFormat(pattern = "yyyy-mm-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date devolutionDate;
-    @ManyToOne
-    @JoinColumn(name = "clientId")
-    @JsonIgnoreProperties("reservations")
-    private Client client;
+    @Column(name = "STATUS")
+    private String status = "created";
     @ManyToOne
     @JoinColumn(name = "cabinId")
     @JsonIgnoreProperties("reservations")
     private Cabin cabin;
+    @ManyToOne
+    @JoinColumn(name = "clientId")
+    @JsonIgnoreProperties({"reservations","messages"})
+    private Client client;
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "scoreId", referencedColumnName = "id")
     private Score score;
+   
 }
