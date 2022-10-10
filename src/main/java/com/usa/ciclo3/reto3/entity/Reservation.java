@@ -1,6 +1,5 @@
 package com.usa.ciclo3.reto3.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
@@ -26,19 +25,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "RESERVATION")
 public class Reservation implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
-    private Long id;
+    private Long idReservation;
     @Column(name = "START_DATE", nullable = false)
-    @JsonFormat(pattern = "yyyy-mm-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
+    
     @Column(name = "DEVOLUTION_DATE", nullable = false)
-    @JsonFormat(pattern = "yyyy-mm-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date devolutionDate;
+    
     @Column(name = "STATUS")
     private String status = "created";
     @ManyToOne
@@ -47,10 +46,10 @@ public class Reservation implements Serializable {
     private Cabin cabin;
     @ManyToOne
     @JoinColumn(name = "clientId")
-    @JsonIgnoreProperties({"reservations","messages"})
+    @JsonIgnoreProperties({"reservations", "messages"})
     private Client client;
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "scoreId", referencedColumnName = "id")
     private Score score;
-   
+
 }

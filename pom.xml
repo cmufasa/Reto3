@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.usa.ciclo3</groupId>
     <artifactId>reto3</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.6-SNAPSHOT</version>
     <name>reto3</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -55,6 +55,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.23</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
 
