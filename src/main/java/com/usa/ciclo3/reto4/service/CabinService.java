@@ -34,12 +34,8 @@ public class CabinService {
                 
                 cabinBd.setBrand(cabin.getBrand());
                 cabinBd.setRooms(cabin.getRooms());
-//                cabinBd.setCategory(cabin.getCategory());
                 cabinBd.setName(cabin.getName());
                 cabinBd.setDescription(cabin.getDescription());
-//                cabinBd.setMessages(cabin.getMessages());                
-//                cabinBd.setReservations(cabin.getReservations());
-                
                 
                 return cabinRepository.save(cabinBd);
                 
