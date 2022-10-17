@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.usa.ciclo3</groupId>
     <artifactId>reto5</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>reto5</name>
     <description>Demo project for Spring Boot</description>
     <properties>
